@@ -1,0 +1,45 @@
+class UserAuthentication:
+    def __init__(self):
+        self.user_credentials = {}
+
+    def register(self, username, password):
+        if username not in self.user_credentials:
+            self.user_credentials[username] = password
+            print("Registration successful!")
+        else:
+            print("Username already exists. Please choose a different one.")
+
+    def access_secured_page(self, username):
+        print(f"Welcome to the secured page, {username}.")
+
+    def login(self, username, password):
+        if username in self.user_credentials and self.user_credentials[username] == password:
+            print(f"Welcome, {username}!")
+            self.access_secured_page(username)
+        else:
+            print("Invalid username or password.")
+
+    def main(self):
+        while True:
+            print("1. Register")
+            print("2. Login")
+            print("3. Exit")
+            choice = input("Choose an option: ")
+
+            if choice == "1":
+                username = input("Enter a username: ")
+                password = input("Enter a password: ")
+                self.register(username, password)
+            elif choice == "2":
+                username = input("Enter your username: ")
+                password = input("Enter your password: ")
+                self.login(username, password)
+            elif choice == "3":
+                print("Exiting...")
+                break
+            else:
+                print("Invalid choice. Please select a valid option.")
+
+if __name__ == "__main__":
+    auth_system = UserAuthentication()
+    auth_system.main()
